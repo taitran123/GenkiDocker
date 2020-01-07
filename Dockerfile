@@ -74,16 +74,16 @@ RUN apt-get update && apt-get install -y \
 
 
 #GENKI
-WORKDIR /gkdata
+WORKDIR /workspace/GENKI
 
-COPY . /gkdata
+COPY . /workspace/GENKI
 COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY docker/start.sh /usr/local/bin/start
 
-RUN chown -R www-data:www-data /gkdata && a2enmod rewrite
+RUN chown -R www-data:www-data /workspace/GENKI && a2enmod rewrite
 RUN chmod u+x /usr/local/bin/start 
 
-RUN chmod -R 775 /gkdata/storage/logs
-RUN chmod -R 775 /gkdata/public
+RUN chmod -R 775 /workspace/GENKI/storage/logs
+RUN chmod -R 775 /workspace/GENKI/public
 
 CMD ["/usr/local/bin/start"]
