@@ -8,7 +8,7 @@ env=${APP_ENV:-production}
 
 if [ "$env" != "local" ]; then
     echo "Caching configuration..."
-    (cd /gkdata && php artisan config:clear && php artisan cache:clear && php artisan queue:restart)
+    (cd /workspace/GENKI && php artisan config:clear && php artisan cache:clear && php artisan queue:restart)
 fi
 
 if [ "$role" = "app" ]; then
@@ -18,13 +18,13 @@ if [ "$role" = "app" ]; then
 elif [ "$role" = "queue" ]; then
 
     echo "Running the queue..."
-    php /gkdata/artisan queue:work --verbose --tries=3 --timeout=90
+    php /workspace/GENKI/artisan queue:work --verbose --tries=3 --timeout=90
 
 elif [ "$role" = "scheduler" ]; then
 
     while [ true ]
     do
-      php /gkdata/artisan schedule:run --verbose --no-interaction &
+      php /workspace/GENKI/artisan schedule:run --verbose --no-interaction &
       sleep 60
     done
 
