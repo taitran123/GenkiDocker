@@ -1,5 +1,5 @@
 FROM php:7.1-apache
-LABEL maintainer="thtai@grandm.vn"
+LABEL maintainer="taitran.apps@gmail.com"
 
 # Install PHP extensions and PECL modules.
 RUN buildDeps=" \
@@ -74,16 +74,16 @@ RUN apt-get update && apt-get install -y \
 
 
 #GENKI
-WORKDIR /workspace/GENKI
+WORKDIR *WORKSPACE FOLDER*
 
-COPY . /workspace/GENKI
+COPY . *WORKSPACE FOLDER*
 COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY docker/start.sh /usr/local/bin/start
 
 RUN chown -R www-data:www-data /workspace/GENKI && a2enmod rewrite
 RUN chmod u+x /usr/local/bin/start 
 
-RUN chmod -R 775 /workspace/GENKI/storage/logs
-RUN chmod -R 775 /workspace/GENKI/public
+RUN chmod -R 775 *WORKSPACE FOLDER*/storage/logs
+RUN chmod -R 775 *WORKSPACE FOLDER*/public
 
 CMD ["/usr/local/bin/start"]
